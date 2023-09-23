@@ -17,7 +17,7 @@ All gerbers and source files can be found in this repo, as this project is fully
 
 ## Disclaimer
 
-I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. Attempt this project at your own risk.
+I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. You may encounter issues with certain games! Attempt this project at your own risk.
 
 ## Board Characteristics and Order Information
 
