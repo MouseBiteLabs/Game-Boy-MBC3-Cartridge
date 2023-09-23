@@ -87,7 +87,35 @@ Your parts list will vary depending on the game you are trying to make, and what
 
 Please carefully review the parts you need for the board you are trying to make. Do not add any parts to your build that don't appear in the column for the game you are making. This means you *cannot* populate every component on the board at the same time.
 
-[BOM]
+| Reference Designators | Value/Part Number              | Package          | Description        | No-save carts | Save carts with U4     | Save carts without U4 | Source                                           |
+| --------------------- | ------------------------------ | ---------------- | ------------------ | ------------- | ---------------------- | --------------------- | ------------------------------------------------ |
+| B1                    | CR2025                         | CR2025           | Backup Battery     |               | X                      | X                     | [https://mou.sr/3PLccol](https://mou.sr/3PLccol) |
+| C1                    | 0.1uF                          | 0603             | Capacitor (MLCC)   | X             | X                      | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| C2                    | 15pF                           | 0603             | Capacitor (MLCC)   |               | If using RTC           | If using RTC          | https://mou.sr/3PPorjO                           |
+| C3                    | 15pF                           | 0603             | Capacitor (MLCC)   |               | If using RTC           | If using RTC          | https://mou.sr/3PPorjO                           |
+| C4                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               | X                      | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| C5                    | 10uF                           | 0603             | Capacitor (MLCC)   |               | X                      | X                     | [https://mou.sr/3mZtSkF](https://mou.sr/3mZtSkF) |
+| C6                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               | X                      | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| C7                    | 0.1uF                          | 0603             | Capacitor (MLCC)   | X             | X                      | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| C8                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               |                        | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| C9                    | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                        |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
+| C10                   | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                        |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
+| C11                   | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                        |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
+| C12                   | 0.1uF                          | 0603             | Capacitor (MLCC)   |               |                        | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
+| Q1                    | 2N7002                         | SOT-23           | N-Channel FET      |               | If using MBC3 (no rev) | X                     | https://mou.sr/3rgfh6J                           |
+| Q2                    | Si2301CDS                      | SOT-23           | P-Channel FET      |               |                        | X                     | [https://mou.sr/3LvBdSb](https://mou.sr/3LvBdSb) |
+| R1                    | 10k                            | 0603             | Resistor           |               | X                      | X                     | [https://mou.sr/3riR7IH](https://mou.sr/3riR7IH) |
+| R2                    | 330k                           | 0603             | Resistor           |               | If using RTC           | If using RTC          | https://mou.sr/3PZ2pvj                           |
+| R8                    | 10k                            | 0603             | Resistor           | X             | X                      | X                     | https://mou.sr/3riR7IH                           |
+| R10                   | 10k                            | 0603             | Resistor           |               |                        | X                     | https://mou.sr/3riR7IH                           |
+| U1                    | 29F016, 29F032, 29F033         | TSOP-48, TSOP-40 | Flash EEPROM       | X             | X                      | X                     | AliExpress or eBay                               |
+| U2                    | MBC3                           | SOP-24           | MBC3 Mapper        | X             | X                      | X                     | Donor MBC3 Game Boy cartridge                    |
+| U3                    | AS6C6264, AS6C62256            | SOP-28           | SRAM               |               | X                      | X                     | [https://mou.sr/450klcY](https://mou.sr/450klcY) |
+| U4                    | MM1026, MM1134, BA6129, BA6735 | SOIC-8           | Battery Management |               | X                      |                       | Donor Game Boy cartridge                         |
+| U5                    | TPS3840DL42                    | SOT-23-5         | Supervisory IC     |               |                        | X                     | [https://mou.sr/46lxKxA](https://mou.sr/46lxKxA) |
+| U6                    | LM66100DCKR                    | SC70-6           | Ideal Diode        |               |                        | X                     | [https://mou.sr/450kfSE](https://mou.sr/450kfSE) |
+| U7                    | 74AHC1G79                      | SC-74A-5         | Flip Flop          |               | If multicart           | If multicart          | https://mou.sr/3PPoGve                           |
+| X1                    | 32.768 kHz                     | Radial           | Crystal Oscillator |               | If using RTC           | If using RTC          | https://mou.sr/3ZteKuy                           |
 
 ## Things to Remember
 
@@ -108,8 +136,10 @@ Please carefully review the parts you need for the board you are trying to make.
 
 ## Resources and Acknowledgements
 
+- <a href="http://www.devrs.com/gb/files/hardware.html">Jeff Frohwein's GameBoy Tech Page</a>
 - <a href="https://gbhwdb.gekkio.fi/">Game Boy Hardware Database</a>
 - <a href="https://catskull.net/gb-rom-database/">Nintendo Gameboy Game List</a>
+- <a href="https://www.gbxcart.com/">insideGadgets discord server for GBxCart RW compatibility requirements</a>
 - <a href="https://www.ti.com/lit/ds/symlink/lm66100.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1694502124931&ref_url=https%253A%252F%252Fwww.ti.com%252Fgeneral%252Fdocs%252Fsuppproductinfo.tsp%253FdistId%253D10%2526gotoUrl%253Dhttps%253A%252F%252Fwww.ti.com%252Flit%252Fgpn%252Flm66100">LM66100 Datasheet</a>
 - <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/99104/MITSUBISHI/MM1026.html">System Reset IC Datasheet</a>
 - Board outline from <a href="https://tinkerer.us/projects/homebrew-gameboy-cartridge.html">Dillon Nichols's Homebrew Gameboy Cartridge project</a>
