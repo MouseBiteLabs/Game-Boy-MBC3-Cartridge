@@ -87,7 +87,7 @@ Your parts list will vary depending on the game you are trying to make, and what
 
 Please carefully review the parts you need for the board you are trying to make. Do not add any parts to your build that don't appear in the column for the game you are making. This means you *cannot* populate every component on the board at the same time.
 
-| Reference Designators | Value/Part Number              | Package          | Description        | No-save carts | Save carts with U4     | Save carts without U4 | Source                                           |
+| Reference Designators | Value/Part Number              | Package          | Description        | No save carts | Save carts with U4     | Save carts without U4 | Source                                           |
 | --------------------- | ------------------------------ | ---------------- | ------------------ | ------------- | ---------------------- | --------------------- | ------------------------------------------------ |
 | B1                    | CR2025                         | CR2025           | Backup Battery     |               | X                      | X                     | [https://mou.sr/3PLccol](https://mou.sr/3PLccol) |
 | C1                    | 0.1uF                          | 0603             | Capacitor (MLCC)   | X             | X                      | X                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
@@ -109,10 +109,10 @@ Please carefully review the parts you need for the board you are trying to make.
 | R8                    | 10k                            | 0603             | Resistor           | X             | X                      | X                     | https://mou.sr/3riR7IH                           |
 | R10                   | 10k                            | 0603             | Resistor           |               |                        | X                     | https://mou.sr/3riR7IH                           |
 | U1                    | 29F016, 29F032, 29F033         | TSOP-48, TSOP-40 | Flash EEPROM       | X             | X                      | X                     | AliExpress or eBay                               |
-| U2                    | MBC3                           | SOP-24           | MBC3 Mapper        | X             | X                      | X                     | Donor MBC3 Game Boy cartridge                    |
+| U2                    | MBC3                           | QFP-32           | MBC3 Mapper        | X             | X                      | X                     | Donor MBC3 Game Boy cartridge                    |
 | U3                    | AS6C6264, AS6C62256            | SOP-28           | SRAM               |               | X                      | X                     | [https://mou.sr/450klcY](https://mou.sr/450klcY) |
 | U4                    | MM1026, MM1134, BA6129, BA6735 | SOIC-8           | Battery Management |               | X                      |                       | Donor Game Boy cartridge                         |
-| U5                    | TPS3840DL42                    | SOT-23-5         | Supervisory IC     |               |                        | X                     | [https://mou.sr/46lxKxA](https://mou.sr/46lxKxA) |
+| U5                    | TPS3840PH40                    | SOT-23-5         | Supervisory IC     |               |                        | X                     | https://mou.sr/46950sc                           |
 | U6                    | LM66100DCKR                    | SC70-6           | Ideal Diode        |               |                        | X                     | [https://mou.sr/450kfSE](https://mou.sr/450kfSE) |
 | U7                    | 74AHC1G79                      | SC-74A-5         | Flip Flop          |               | If multicart           | If multicart          | https://mou.sr/3PPoGve                           |
 | X1                    | 32.768 kHz                     | Radial           | Crystal Oscillator |               | If using RTC           | If using RTC          | https://mou.sr/3ZteKuy                           |
