@@ -127,6 +127,9 @@ Please carefully review the parts you need for the board you are trying to make.
 
 ## Revision History
 
+### v1.2
+- Fixed battery silkscreen
+
 ### v1.1
 - Widen SRAM footprint for easier soldering
 - Changed silkscreen for clarity
