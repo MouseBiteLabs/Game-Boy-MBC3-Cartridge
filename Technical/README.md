@@ -4,15 +4,16 @@ This write-up will serve as an attempt of explaining some of the features on thi
 
 ## Schematic
 
-[schematic]
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/d5d2be88-2ed2-4b58-b1b9-3dd5d08cba1e)
 
 ## Cart Edge Pins
 
 Very briefly, I will categorize the different pins on the 32-pin cartridge edge connector.
 
 - Pin 1 and pin 32 are VCC and GND, respectively.
-- Pin 2 is the CLK or PHI pin.
+- Pin 2 is the CLK or PHI pin, which is solely connected to the CLK pin on the MBC3 chip.
 - Pin 3 is the /WR pin and pin 4 is the /RD pin. These signals partially determine when data is read from the ROM or when data is read/written to the RAM.
+- Pin 5 is the /CS pin, which is unused on MBC3 carts.
 - Pins 6 through 21 are the address pins A0 through A15.
 - Pins 22 through 29 are the data pins D0 through D7.
 - Pin 30 is the /RST (or reset) pin. When this pin is low, the Game Boy will cease operation.
@@ -20,7 +21,24 @@ Very briefly, I will categorize the different pins on the 32-pin cartridge edge 
 
 ## MBC3 - Memory Bank Controller
 
+The MBC3 is a memory mapping chip, used to expand the addressable memory space of a Game Boy cartridge. The RA14-RA12 and AA13-AA14 outputs are used to access higher memory banks on the ROM and RAM chips. It also has RAM and ROM chip select outputs to control data access on the ROM and RAM chips, though only the RAM /CS output is commonly used. The main upgrade over the MBC1 other than addressable memory space is the addition of a real time clock, or RTC, for time-based games like Pokemon GSC and Mary Kate and Ashley's Pocket Planner. The downside to the RTC is that it *greatly* increases the current draw of the MBC3 when operating on battery power, which is why your older Pokemon Red might still be holding a save, while your Pokemon Silver died a decade ago.
+
+Further sections will provide more context for some of the MBC3 pins and the logic of how they are connected.
+
 ## ROM and RAM
+
+The connections to the address and data pins here are mostly self-explanatory. However, the upper address pins on the ROM and RAM chips are controlled, or "banked", by the MBC3.
+- A14 through A20 on the ROM chip are controlled by the RA14 to RA20 outputs from the MBC3.
+- A13 and A14 on the RAM chip are controlled by the AA13 and AA14 outputs from the MBC3.
+  - SJ5 and SJ6 are solder jumpers that must be set to match the size of the SRAM chip you're using. See the main README for information. The function of these jumpers is mostly to set a 64K SRAM chip's CE2 pin to the correct location for proper control (more information in later sections). 
+ 
+Other pins include:
+
+- The ROM's /CE pin is controlled by the A15 address pin and the /OE pin is controlled by the /RD pin on the cart edge (pin 4).
+- The ROM's /WE pin, which was not on original cartridges, is connected to pin 31 on the cart edge for programming via the GBxCART RW as previously mentioned.
+- The RAM's /OE pin is connected to the /RD pin on the cart edge (pin 4).
+- The RAM's /WE pin is connected to /WR on the cart edge (pin 3).
+- The RAM's /CE pin requires a bit of explanation, which will be covered in a later section.
 
 ## Battery Management and Data Retention Considerations
 
