@@ -82,9 +82,7 @@ In order to prevent this, cartridges that have battery-backed SRAM on them use t
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC1-Cartridge/assets/97127539/c3d14c7a-4695-4fc1-92df-16f425d90c79)
 
----UPDATE BELOW TO MBC3 INFO---
-
-But that's not all the MM chip does. It also is used to pull the MBC1's /RESET input to GND as well. This is especially important for original Game Boy MBC1 carts with 256K SRAM that needed the MBC1 to be powered from the battery, as keeping this pin off will (assumedly) keep current draw of the MBC1 to a minimum. Furthermore, pulling this pin to GND also causes the MBC1 to assert the SRAM's /CE pin high to keep the SRAM in a low power state.
+But that's not all the MM chip does. It also is used to pull the MBC3's /RESET input to GND as well. This is especially important as keeping this pin off will keep current draw of the MBC3 to a minimum. Furthermore, pulling this pin to GND also causes the MBC3 to assert the SRAM's /CE pin high to keep the SRAM in a low power state.
 
 ### Reset IC - MM1134
 
@@ -96,9 +94,7 @@ Essentially, the /CS output will follow the /Y input, *unless* VCC is below the 
 
 *Note: If you ground the /Y input, then the MM1134 will act exactly like an MM1026.*
 
----UPDATE BELOW TO MBC3 INFO---
-
-On the gbhwdb, there are only a few cartridge PCBs that use an MM1134 (the BA6735 equivalent, specifically) - DMG-DECN-20 and DMG-DGCU-10 - but these boards use 64K of SRAM, so this extra /Y pin goes unused. 
+From looking at carts on gbhwdb, it seems like this distinctive difference of the MM1134 vs. the MM1026 is unused. As the MBC3 is usually powered on the battery anyway, this functionality is fulfilled by the MBC3 itself.
 
 ### Open Collector Requirements on CPU /RESET Input
 
