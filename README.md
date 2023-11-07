@@ -80,7 +80,7 @@ Note that you can make games that only require 64Kb of RAM and still use a 256Kb
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/fe85ff2c-26b0-4e2a-8a7f-ffec7c7e6388)
 
-## Test Points
+## Test Points and Final Checkout
 
 On the back of the board are five test points. Here's where they are connected:
 
@@ -91,6 +91,8 @@ On the back of the board are five test points. Here's where they are connected:
 - TP5: VCC input voltage
 
 After you assemble your game, you should measure the current out of the battery. But first, you should program it with the GBxCart, or if you programmed the EEPROM separately, put it into a Game Boy and cycle power once. Then, flip the PCB upside down on a non-conductive surface (not your leg), and set your multimeter in DC millivolts (or volts). Put the positive probe on TP3 and the negative probe on TP2. If you used a 10kΩ for R1, as indicated in the BOM, you should read a voltage in the single or tens of millivolts for non-RTC games, or up to 40 mV for games using a real-time clock. If you have something much higher, especially voltages above 40mV, then you likely have an issue or short circuit on the board somewhere.
+
+As I collect more revisions of MBC3 chips, I will update with approximate power draw measurements here.
 
 **Note: If using the replacement battery management IC in U5, you need to power up the game at least once before battery currents will make sense.**
 
