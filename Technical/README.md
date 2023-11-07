@@ -1,10 +1,10 @@
-# Technical Design Document - Under Construction
+# Technical Design Document
 
 This write-up will serve as an attempt of explaining some of the features on this cartridge. I won't go into heavy detail about the functionality of the MBC3, but I will attempt to explain some higher level functions and the reasoning behind the circuit.
 
 ## Schematic
 
-![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/d5d2be88-2ed2-4b58-b1b9-3dd5d08cba1e)
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/a19b0cd8-b26e-4a99-becc-673e54f19856)
 
 ## Cart Edge Pins
 
@@ -21,7 +21,7 @@ Very briefly, I will categorize the different pins on the 32-pin cartridge edge 
 
 ## MBC3 - Memory Bank Controller
 
-The MBC3 is a memory mapping chip, used to expand the addressable memory space of a Game Boy cartridge. The RA14-RA12 and AA13-AA14 outputs are used to access higher memory banks on the ROM and RAM chips. It also has RAM and ROM chip select outputs to control data access on the ROM and RAM chips, though only the RAM /CS output is commonly used. The main upgrade over the MBC1 other than addressable memory space is the addition of a real time clock, or RTC, for time-based games like Pokemon GSC and Mary Kate and Ashley's Pocket Planner. The downside to the RTC is that it *greatly* increases the current draw of the MBC3 when operating on battery power, which is why your older Pokemon Red might still be holding a save, while your Pokemon Silver died a decade ago.
+The MBC3 is a memory mapping chip, used to expand the addressable memory space of a Game Boy cartridge. The RA14-RA20 and AA13-AA14 outputs are used to access higher memory banks on the ROM and RAM chips. It also has RAM and ROM chip select outputs to control data access on the ROM and RAM chips, though only the RAM /CS output is commonly used. The main upgrade over the MBC1 other than addressable memory space is the addition of a real time clock, or RTC, for time-based games like Pokemon GSC and Mary Kate and Ashley's Pocket Planner. The downside to the RTC is that it *greatly* increases the current draw of the MBC3 when operating on battery power, which is why your older Pokemon Red might still be holding a save, while your Pokemon Silver died a decade ago.
 
 Further sections will provide more context for some of the MBC3 pins and the logic of how they are connected.
 
