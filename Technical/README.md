@@ -130,7 +130,7 @@ For reference again, here is a pinout diagram of the MM1026 and MM1134.
 
 And here is the section of the schematic for using one of these chips ("Group A" components).
 
-[schematic]
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/fca06a50-b38e-427b-a17a-fd0aa426f217)
 
 #### Creating the Battery-Backed Power Supply
 
@@ -138,36 +138,23 @@ The VOUT pin is a combination of the VCC and VBAT pins. VCC is connected to the 
 
 #### Reset Pin Management
 
----UPDATE BELOW TO MBC3 INFO---
+Because anything connected to the /RESET input pin on the cart edge must be open collector, the open collector output of the MM chip, pin 2, is connected to the /RESET cart edge pin (pin 30). The MBC's /RESET input, pin 4, can be connected one of two ways, based on how SJ3 is soldered.
 
-Because anything connected to the /RESET input pin on the cart edge must be open collector, the open collector output of the MM chip, pin 2, is connected to the /RESET cart edge pin (pin 30). The MBC's /RESET input, pin 10, is connected to the driven CS output of the MM chip, pin 3.
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/41b15826-873f-4dcc-a424-c6c6f22047be)
 
-#### Controlling the SRAM /CE Pin (MM1134)
+For revision-less MBC3 chips, it's recommended to populate Q1 and bridge SJ3 to route the MBC3's /RESET input to the cart edge pin 30 (net label /RST). Q1's gate is driven by pin 5 output of the MM chip (net CSB), which is high whenever VCC falls below 4.2V. This essentially actively keeps the /RESET line low when power is off, and allows the console to assert the /RESET input of the MBC3. This FET circuit is seen on DMG-KECN-SP boards, which use a revision-less MBC3 boards. The reason this wiring is recommended is unclear - KECN-01 boards use revision-less MBC3 chips and do not include it - but to be safe, it should be added. 
 
----UPDATE BELOW TO MBC3 INFO---
+Boards that use MBC3A or B do not have this extra FET, and instead drive their /RESET inputs with the CS output of the MM chip, pin 3.
 
-The RAM_/CS output of the MBC1 is connected to the /Y input (pin 7) of the MM1134, and if SJ3 is bridged to connect it to RAM_/CS_G (as it should be when using an MM1134), the /CS output (pin 5) will be connected to the SRAM /CE input. As explained earlier, the state of the /CS output of the MM1134 is the same as the /Y input, unless VCC is below 4.2V, in which case the /CS output is pulled up to the VOUT voltage to satisfy low-current data retention requirements of the SRAM.
+#### Controlling the SRAM /CE Pin
 
-#### Controlling the SRAM /CE Pin (MM1026)
-
----UPDATE BELOW TO MBC3 INFO---
-
-Because the MM1026 does not have the gated /CS output functionality, and the MBC1 is not powered by the battery on my cart design, we need to add the function back with some external components, which I have labelled as "Group C" components in the schematic.
-
-![image](https://github.com/MouseBiteLabs/Game-Boy-MBC1-Cartridge/assets/97127539/8a6cc931-1e40-4af1-b359-2de8ab8acf11)
-
-As a reminder: RAM_/CS connects to the MBC1's RAM_/CS output pin, RAM_/CS_G connects to the SRAM's /CE input, and VCC_SRAM connects to the MM1026 VOUT pin.
-
-- When the CS output is driven low (when VCC is below 4.2V), conduction between the drain and source of Q2 will be off; the RAM_/CS_G net will be pulled up to the battery-backed voltage via R7, no matter what RAM_/CS is doing.
-- When the CS output is driven high (when VCC is above 4.2V), conduction between the drain and source of Q1 is allowed; RAM_/CS_G will follow the RAM_/CS output, which will allow the MBC1 to control the SRAM /CE input.
-
-Thus, this circuit essentially adds the MM1134's gated /CS output functionality back into the circuit.
+As mentioned earlier, since the MBC3 is powered on the battery, the RAM /CS output pin can keep the SRAM in a low power state while power is off.
 
 ### Using Brand New Components
 
 If you do not have one of these MM chips, as you can only typically get them from donor Game Boy cartridges and not all games use them, you can achieve the same results using commercially-available components. In order to do so, you need to populate "Group B" components which features the TPS3613 - a Texas Instruments chip that is almost identical to the MM1134, with a few minor differences.
 
-![image](https://github.com/MouseBiteLabs/Game-Boy-MBC1-Cartridge/assets/97127539/ecbeeedb-ec24-4204-88d6-f9e8cc8cf5c1)
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/c9912031-4962-4de5-bdf1-28e1f9c5e096)
 
 Here is the timing diagram from the TPS3613 datasheet, showing the relations between the inputs and outputs of the chip.
 
@@ -175,28 +162,21 @@ Here is the timing diagram from the TPS3613 datasheet, showing the relations bet
 
 #### Creating the Battery-Backed Power Supply
 
-Like the MM chips, VOUT is created by VCC or VBAT. But instead of a hard internal threshold, the output of this pin is determined by the voltage on the SENSE pin. If the voltage on SENSE is above an internal set voltage of 1.15 V (shown as VIT in the diagram), VOUT is equivalent to VCC. When the SENSE voltage drops below VIT, VOUT switches over to being powered by VBAT instead - no matter if VBAT is higher or lower than VCC.
+Like the MM chips, VOUT is created by VCC or VBAT. But instead of a hard internal threshold, the output of this pin is determined by the voltage on the SENSE pin. If the voltage on SENSE is above an internal set voltage of 1.15 V (shown as VIT in the diagram), VOUT is equivalent to VCC. When the SENSE voltage drops below VIT, and when VCC drops below VBAT, VOUT switches over to being powered by VBAT instead.
 
 The voltage on SENSE is determined by the voltage divider made with R9 and R10. The MM chips have an internal threshold of 4.2 V for determining that the power is going off and the /RESET outputs should be asserted to protect the RAM from spurious writes. So for this design, I'll stick to that threshold.
 
-The thing about the TPS chip though is that when voltage on the VOUT pin switches over from the VCC input to the VBAT input, the voltage will be driven to the battery voltage *even if it's lower than VCC*. On the MM chips, the VOUT pin follows whichever is higher. The issue with this is if for some reason when the voltage switches over to VBAT, the supply pin of the SRAM will be powered by a 3 V source - but the I/O of the SRAM will still be referenced to the decreasing voltage on VCC. We need to ensure the voltage on the supply pin of the RAM is close enough to the voltage seen on the I/O to prevent damage to the RAM. On the AS6C62256 datasheet, the max limit of an input pin voltage is whatever is on the supply pin plus 0.5 V.
-
-So, the requirement is basically that the voltage on the VCC_SRAM net discharges slower than the voltage on the VCC net. To ensure this, we can lower the current draw on the VCC_SRAM net, as well as raise the bulk capacitance on this net so that it takes longer to discharge.
-
-Luckily, the only thing VOUT is connected to that draws power is the RAM. And after the switchover to VBAT happens on the TPS chip, the SRAM will also be put into a low power mode, so it's current draw is much lower. Adding C6 on the VCC_SRAM net for a bulk capacitance further lengthens the time it takes for VCC_SRAM to discharge down until it reaches the voltage on VOUT, which will be the battery voltage. By the time this happens, VCC should be sufficiently discharged.
-
 #### Reset Pin Management
 
-The /RESET and RESET outputs of the TPS3613 are push-pull. This is slightly inconvenient, because it means you cannot directly connect them to the /RST pin on the cart edge (pin 30), because as discussed earlier, any connection to this pin must be open collector. So, we just have to make it open collector (or in this case, open drain). Adding Q1, an N-channel MOSFET, achieves this. 
+The /RESET and RESET outputs of the TPS3613 are push-pull. This is slightly inconvenient, because it means you cannot directly connect them to the /RST pin on the cart edge (pin 30), because as discussed earlier, any connection to this pin must be open collector. So, we just have to make it open collector (or in this case, open drain). Adding Q1, an N-channel MOSFET, achieves this.
 
-- When voltage on the SENSE pin is above the internal 1.15V threshold, the /RESET output pin is asserted high allowing the MBC1 to function, and the RESET output pin is asserted low. This will keep Q1 off and allow /RST, pin 30 on the cart edge, to float.
-- When voltage on the SENSE pin drops below the internal 1.15V threshold, the /RESET output pin is asserted low turning off the MBC1, and the RESET output pin is asserted high. This will turn Q1 on, and pull pin 30 on the cart edge to GND.
+- When voltage on the SENSE pin is above the internal 1.15V threshold, the /RESET output pin is asserted high allowing the MBC3 to function, and the RESET output pin is asserted low. This will keep Q1 off and allow /RST, pin 30 on the cart edge, to float.
+- When voltage on the SENSE pin drops below the internal 1.15V threshold, the /RESET output pin is asserted low turning off the MBC3, and the RESET output pin is asserted high. This will turn Q1 on, and pull pin 30 on the cart edge to GND. Note that the positive RESET output follows the voltage on the VDD pin, so once the 5V supply on the Game Boy depletes, Q1 will be off again.
+  - The consequence of this is you should use an MBC3A or MBC3B to make games with the TPS3613. As mentioned earlier, revision-less MBC3 chips should be connected such that the /RESET input is connected to cart edge pin 30, and driven by Q1. Because the positive RESET output eventually goes to zero, Q1 will eventually cease to conduct, leaving the MBC3's /RESET input pin floating. This causes excess power draw of the MBC3, which will kill your battery much faster than normal. You need to use the driven /RESET output of the TPS3613 to keep the /RESET input pin of the MBC3 at GND at all times.
 
 #### Controlling the SRAM /CE Pin
 
----UPDATE BELOW TO MBC3 INFO---
-
-The /CEIN input and /CEOUT output pins of the TPS3613 acts exactly like the /Y input and /CS output pins of the MM1134 - /CEOUT will follow /CEIN as long as the voltage on the SENSE pin is above 1.15V. So the RAM_/CS output is wired similarly to the MM1134 implementation.
+The /CEIN input and /CEOUT output pins of the TPS3613 acts exactly like the /Y input and /CS output pins of the MM1134 - /CEOUT will follow /CEIN as long as the voltage on the SENSE pin is above 1.15V. This feature is unused on the MBC3 cart because, again, the MBC3 is powered via the battery which can assert the RAM's /CS pin to keep it in a low power mode.
 
 ## Estimating Battery Life
 
@@ -204,15 +184,13 @@ You can get a very rough estimate of battery life by measuring the voltage in mi
 
 *Fun fact: you can measure this voltage using TP2 and TP3 on the back of the board as your multimeter probe points.*
 
-Then, find the milliamp-hour rating of your selected battery (preferrably from a datasheet). For example, a Renata CR2025 battery is rated for 165 mAh. Take this number and divide by the milliamps calculated above, to get a rough estimate of the number of hours the battery can supply when the console is turned off (when it is on, the Game Boy powers the cart so the battery is unused). Divide by 24 and then 365 (or just divide by 8760) and you will get a number of years. 
+Then, find the milliamp-hour rating of your selected battery (preferrably from a datasheet). For example, a Renata CR2032 battery is rated for 225 mAh. Take this number and divide by the milliamps calculated above, to get a rough estimate of the number of hours the battery can supply when the console is turned off (when it is on, the Game Boy powers the cart so the battery is unused). Divide by 24 and then 365 (or just divide by 8760) and you will get a number of years. 
 
 So for an overall equation to determine the very approximate number of years the battery will survive:
 
 Years = Resistance of R1 (ohms) * Battery capacity (mAh) / Voltage (mV) / 8760 
 
----UPDATE BELOW TO MBC3 INFO---
-
-For an example: an MBC1 cartridge where R1 is 10 kΩ (or 10000 Ω), using a CR2025 rated for 165 mAh, and a voltage of 10 mV measured across the terminals of R1, yields 10000 * 165 / 10 / 8760 = 18.84 years of battery survival. This number can be different due to changing environmental conditions, self-discharge of the battery, and also actual capacity of the battery - discharging a battery at very small currents will increase its apparent capacity.
+For an example: an MBC3 cartridge where R1 is 10 kΩ (or 10000 Ω), using a CR2032 rated for 230 mAh, and a voltage of 20 mV measured across the terminals of R1, yields 10000 * 225 / 40 / 8760 = 12.84 years of battery survival. This number can be different due to changing environmental conditions, self-discharge of the battery, and also actual capacity of the battery - discharging a battery at very small currents will increase its apparent capacity, and as the voltage decreases, the current required for data retention decreases as well.
 
 Just backup your save data within a decade of making the cart and you'll be fine.
 
