@@ -9,13 +9,17 @@ This circuit board should cover most, if not all, MBC3 games. The features are a
 - The option to add battery backup to the cartridge *without* the need of the original battery management ICs - perfect for MBC3 donors that didn't have batteries in them
 - Fully compatible with the <a href="https://www.gbxcart.com/">GBxCart RW</a> so you can transfer games and save files to and from the board
 
-![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/236683cc-6e3e-4744-83c8-658e7b0f7ec8)
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/7b075196-c268-4511-a2f7-1d9576e81676)
 
 All gerbers and source files can be found in this repo, as this project is fully open source. Technical documentation of the board can be found in the Technical folder.
 
 ## Disclaimer
 
 I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. You may encounter issues with certain games! Attempt this project at your own risk.
+
+If you are using this board to make games other than for personal use, you must have permission from the originator to use and distribute any ROM images or other related material. You are responsible for making sure you adhere to any license requirements. DO NOT use my circuit boards for profiting from stolen work - this especially includes homebrew content, ROM hacks, and using fan-made labels without permission from the originator.
+
+**Please note that version 1.3 is technically untested, however, the only consequential change is an additional 0.25 mm on the bottom of the board edge for better fitment, so I don't expect issues.**
 
 ## Board Characteristics and Order Information
 
@@ -25,11 +29,21 @@ The zipped folder contains all the gerber files for this board. The following op
 - Surface Finish: ENIG
 - Gold Fingers: Yes, 30° chamfer
 
+**Currently not selling on Etsy, but will in the future. Stay tuned.**
+
+<a href="https://www.etsy.com/shop/MouseBiteLabs"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/97127539/239718536-5c9aefe3-0628-4434-b8d8-55ff80ac3bbc.png" alt="PCB from Etsy" /></a> 
+
 You can use the zipped folder at any board fabricator you like. You may also buy the board from PCBWay using this link (disclosure: I receive 10% of the sale value to go twoards future PCB orders of my own):
 
 [add link]
 
-<a href="https://oshpark.com/shared_projects/Uqmcescj">The board is also listed on OSH Park as well.</a> **Be sure to get them in 0.8mm thickness if you order from here.**
+<a href="https://oshpark.com/shared_projects/lABK3ldA">The board is also listed on OSH Park as well.</a> **Be sure to get them in 0.8mm thickness if you order from here.**
+
+## Required Equipment
+
+The EEPROMs on the board needs to be programmed somehow. I recommend using the GBxCart, as mentioned. These boards are fully compatible with it, and it makes reflashing games extremely easy using <a href="https://github.com/lesserkuma/FlashGBX">lesserkuma's FlashGBX software</a>.
+
+Alternatively, you can buy an EEPROM programmer with a TSOP adapter. The downside to this method is that you have to desolder the chip every time you want to program it. The <a href="https://flashcatusb.com/">FlashcatUSB</a> is one popular option in retro spaces.
 
 ## Board Configurations
 
@@ -44,9 +58,14 @@ Solder bridge SJ1 and SJ4 if your game does not use any SRAM or battery.
 The MBC3 chip you use from the donor cartridge can be one of a few different types:
 
 - If your MBC3 doesn't have a revision letter on it (it just says "MBC3" on it) then bridge the middle pad of SJ3 to the left. (You will also need to populate Q1!)
+  - If you're using a revision-less MBC3, and are making a game that requires a battery, you should use a donor MM1026, MM1134, BA6129, or BA6735 battery management IC instead of the replacement TPS3613.
 - If your MBC3 *does* have a revision letter, such as MBC3A or MBC3B, then bridge the middle pad of SJ3 to the right.
 
-### SRAM Size Selection (SJ5 and SJ6, or SW1)
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/24aaa7eb-fbc7-428d-955a-e1005c491098)
+
+*[Images of MBC3 chips from <a href="https://gbhwdb.gekkio.fi/cartridges/mbc3.html">Game Boy Hardware Database</a>.]*
+
+### RAM Size Selection (SJ5 and SJ6, or SW1)
 
 These jumpers are located underneath the MBC3 chip, and labeled "64K" and "256K". Solder them to configure the amount of RAM your cart uses. You must configure these pads for every game you make, unless you do not need RAM. <a href="https://catskull.net/gb-rom-database/">You can find a list of games here with their respective RAM sizes.</a>
 
@@ -56,6 +75,22 @@ These jumpers are located underneath the MBC3 chip, and labeled "64K" and "256K"
 - The footprint of these selection pads should allow for a DPDT switch, part number CAS-220A1, to be placed on these pads instead of having to bridge the pads with solder.
 
 Note that you can make games that only require 64Kb of RAM and still use a 256Kb SRAM chip. You still need to configure the jumpers to the 64Kb setting, though.
+
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/fe85ff2c-26b0-4e2a-8a7f-ffec7c7e6388)
+
+## Test Points
+
+On the back of the board are five test points. Here's where they are connected:
+
+- TP1: SRAM supply voltage
+- TP2: Battery voltage (after R1)
+- TP3: Battery voltage (positive terminal of battery)
+- TP4: Ground
+- TP5: VCC input voltage
+
+After you assemble your game, you should measure the current out of the battery. But first, you should program it with the GBxCart, or if you programmed the EEPROM separately, put it into a Game Boy and cycle power once. Then, flip the PCB upside down on a non-conductive surface (not your leg), and set your multimeter in DC millivolts (or volts). Put the positive probe on TP3 and the negative probe on TP2. If you used a 10kΩ for R1, as indicated in the BOM, you should read a voltage in the single or tens of millivolts for non-RTC games, or up to 40 mV for games using a real-time clock. If you have something much higher, especially voltages above 40mV, then you likely have an issue or short circuit on the board somewhere.
+
+**Note: If using the replacement battery management IC in U5, you need to power up the game at least once before battery currents will make sense.**
 
 ## Bill of Materials (BOM)
 
@@ -74,9 +109,6 @@ Please carefully review the parts you need for the board you are trying to make.
 | C6                    | 10uF                           | 0603             | Capacitor (MLCC)   |               | x                  | x                     | [https://mou.sr/3mZtSkF](https://mou.sr/3mZtSkF) |
 | C7                    | 0.1uF                          | 0603             | Capacitor (MLCC)   | x             | x                  | x                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
 | C8                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               |                    | x                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
-| C9                    | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                    |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
-| C10                   | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                    |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
-| C11                   | 0.001uF                        | 0603             | Capacitor (MLCC)   |               |                    |                       | [https://mou.sr/3PpAXoM](https://mou.sr/3PpAXoM) |
 | Q1                    | 2N7002                         | SOT-23           | N-Channel FET      |               | If MBC3 no rev     | x                     | [https://mou.sr/3rgfh6J](https://mou.sr/3rgfh6J) |
 | R1                    | 10k                            | 0603             | Resistor           |               | x                  | x                     | [https://mou.sr/3riR7IH](https://mou.sr/3riR7IH) |
 | R2                    | 330k                           | 0603             | Resistor           |               | If using RTC       | If using RTC          | [https://mou.sr/3PZ2pvj](https://mou.sr/3PZ2pvj) |
@@ -92,13 +124,19 @@ Please carefully review the parts you need for the board you are trying to make.
 
 ## Things to Remember
 
-- The footprint for the EEPROM is specifically for 29F016 - it has 48 pins. However, 29F032 and 29F033 are only 40 pin devices. They still work fine on the board though - place them in the center of the footprint, and leave the outer two pins on each corner empty.
-- The 29F016, 29F032, and 29F033 have been known to occasionally be defective upon arrival. They're usually only available from AliExpress.
-- For battery management, use either U4 *or* U5 and U6 and supporting components. **Do not** use U4, U5, and U6 all on one board. They will interfere with each other.
+- The footprint for the EEPROM is specifically for 29F016 - it has 48 pins. However, 29F032 and 29F033 are only 40 pin devices. They still work fine on the board though - place them in the center of the footprint, and leave the outer two pins on each corner empty
+- The 29F016, 29F032, and 29F033 have been known to occasionally be defective upon arrival. They're either used, or new old stock, and usually only available from AliExpress.
+- The footprint for the battery can fit a CR2032, CR2025, or CR2016 with solder tabs. The only difference is the mAh capacity (larger number = longer life). If you get Panasonic tabbed batteries, you may have to trim the battery tabs to make them fit on the footprint.
+  - For untabbed coin cells, you can find battery retainer adapters online, <a href="https://retrogamerepairshop.com/products/hdr-game-boy-game-battery-retainer?variant=40511013290156">like this one.</a>
+- For battery management, use either U4 *or* U5 and supporting components. **Do not** use U4 and U5 simultaneously on one board. They will interfere with each other.
 - Kb is kilo**bits** and Mb is mega**bits**. Sometimes you will find game ROM and RAM sizes defined in terms of KB or kilo**bytes** and MB or mega**bytes**. You can convert Kb and Mb to KB and MB by dividing Kb or Mb by 8. For example, 256 Kb = 32 KB.
 - You only need to provide ROM and RAM chips that have at least *or greater* the size of the game you are trying to make. That means you can use a 256Kb SRAM chip for a game that only requires 64Kb!
 
 ## Revision History
+
+### v1.3
+- Extended cart edge down by 0.25 mm for better fitment
+- Added OSHW logo and "SUPPORT ORIGINAL CREATORS!"
 
 ### v1.2
 - Replace non-donor battery management circuitry with a TPS3613-based circuit for smaller BOM and easier routing
@@ -119,9 +157,10 @@ Please carefully review the parts you need for the board you are trying to make.
 - <a href="https://gbhwdb.gekkio.fi/">Game Boy Hardware Database</a>
 - <a href="https://catskull.net/gb-rom-database/">Nintendo Gameboy Game List</a>
 - <a href="https://www.gbxcart.com/">insideGadgets discord server for GBxCart RW compatibility requirements</a>
+- <a href="https://github.com/lesserkuma/FlashGBX">Lesserkuma's FlashGBX software</a>
 - <a href="https://www.alldatasheet.com/datasheet-pdf/pdf/99104/MITSUBISHI/MM1026.html">System Reset IC Datasheet</a>
 - <a href="https://www.ti.com/lit/ds/symlink/tps3613-01.pdf?HQS=dis-mous-null-mousermode-dsf-pf-null-wwe&ts=1698238885366&ref_url=https%253A%252F%252Feu.mouser.com%252F">TPS3613 Datasheet</a>
-- Board outline from <a href="https://tinkerer.us/projects/homebrew-gameboy-cartridge.html">Dillon Nichols's Homebrew Gameboy Cartridge project</a>
+- Board outline modified from <a href="https://tinkerer.us/projects/homebrew-gameboy-cartridge.html">Dillon Nichols's Homebrew Gameboy Cartridge project</a>
 - Thank you to <a href="https://github.com/Gekkio">gekkio</a> for their deep Game Boy knowledge resources, and for collaboration in demystifying some of the design choices on Game Boy cartridges
 - Thanks to the awesome members of the <a href="https://moddedgameboy.club/">Modded Gameboy Club</a> for their feedback and support during the entire project development
 
