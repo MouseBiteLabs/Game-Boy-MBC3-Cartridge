@@ -198,7 +198,7 @@ Just backup your save data within a decade of making the cart and you'll be fine
 
 I added spots for a few extra capacitors, in the event some compatibility issues arise. By default, you should ignore these components, as they were not present in most cartridges. If I find instances where they are needed, I will note them in this repo. For now, assume they are unnecessary.
 
-[schematic]
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/48f03643-dedd-4fe4-8d8a-9458f3a89dd4)
 
 1) C9 is a capacitor connected nearby the MBC3's /WR pin to GND. These were populated on some cartridges, and have a value of approximately 1 nF (0.001 uF).
 2) C10 is a capacitor connected nearby the MBC3's /RESET pin to GND. A spot for this capacitor was included on some MBC1 carts, but I cannot locate an instance of it actually being used when looking through the gbhwdb. I don't actually know what value this capacitor would need to be, so I am guessing 1 nF.
