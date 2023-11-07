@@ -154,7 +154,7 @@ As mentioned earlier, since the MBC3 is powered on the battery, the RAM /CS outp
 
 ### Using Brand New Components
 
-If you do not have one of these MM chips, as you can only typically get them from donor Game Boy cartridges and not all games use them, you can achieve the same results using commercially-available components. In order to do so, you need to populate "Group B" components which features the TPS3613 - a Texas Instruments chip that is almost identical to the MM1134, with a few minor differences.
+If you do not have one of these MM chips, as you can only typically get them from donor Game Boy cartridges and not all games use them, you can achieve the same results using commercially-available components. In order to do so, you need to populate "Group B" components which features the TPS3613 - a Texas Instruments chip that is almost identical to the MM1134, with a few minor differences. You also need to solder Q1 onto the board, regardless of your MBC3 revision.
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/c9912031-4962-4de5-bdf1-28e1f9c5e096)
 
