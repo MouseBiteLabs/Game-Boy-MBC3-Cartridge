@@ -23,7 +23,7 @@ Very briefly, I will categorize the different pins on the 32-pin cartridge edge 
 
 ## MBC3 - Memory Bank Controller
 
-The MBC3 is a memory mapping chip, used to expand the addressable memory space of a Game Boy cartridge. The RA14-RA20 and AA13-AA14 outputs are used to access higher memory banks on the ROM and RAM chips. It also has RAM and ROM chip select outputs to control data access on the ROM and RAM chips, though only the RAM /CS output is commonly used. The main upgrade over the MBC1 other than addressable memory space is the addition of a real time clock, or RTC, for time-based games like Pokemon GSC and Mary Kate and Ashley's Pocket Planner. The downside to the RTC is that it *greatly* increases the current draw of the MBC3 when operating on battery power, which is why your older Pokemon Red might still be holding a save, while your Pokemon Silver died a decade ago.
+The MBC3 is a memory mapping chip, used to expand the addressable memory space of a Game Boy cartridge. The RA14-RA20 and AA13-AA14 outputs are used to access higher memory banks on the ROM and RAM chips. It also has a positive and negative RAM chip select output to control data access on the RAM, though only the RAM /CS output is commonly used. The main upgrade over the MBC1 other than addressable memory space is the addition of a real time clock, or RTC, for time-based games like Pokemon GSC and Mary Kate and Ashley's Pocket Planner. The downside to the RTC is that it *greatly* increases the current draw of the MBC3 when operating on battery power, which is why your older Pokemon Red might still be holding a save, while your Pokemon Silver died a decade ago.
 
 Further sections will provide more context for some of the MBC3 pins and the logic of how they are connected.
 
