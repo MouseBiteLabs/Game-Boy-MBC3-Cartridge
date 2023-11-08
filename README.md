@@ -47,6 +47,14 @@ The EEPROMs on the board needs to be programmed somehow. I recommend using the G
 
 Alternatively, you can buy an EEPROM programmer with a TSOP adapter. The downside to this method is that you have to desolder the chip every time you want to program it. The <a href="https://flashcatusb.com/">FlashcatUSB</a> is one popular option in retro spaces.
 
+## Battery Safety
+
+When assembling a board, I recommend populating all the parts *except* the battery, and getting it to run initially without it. This is to make it easier to fix any solder connections that might need fixing, without having to worry about getting the battery hot. And if you need to rework anything near the battery after you've put it on the board, be safe and remove it before putting a hot soldering iron next to it.
+
+And this should go without saying, but if you're assembling these boards with a hot plate or hot air, *do not* solder the battery on this way. You should use an iron, and keep heat off of the battery as much as possible. 
+
+(Also check polarity!)
+
 ## Board Configurations
 
 The board comes with five sets of jumper pads for solder bridges. SJ3, SJ5, and SJ6 require you to solder bridge the middle pad either to the left or right pads. SJ1 and SJ4 are configured by either leaving them alone or bridging them with solder. Here are the situations where you need to add solder bridges.
