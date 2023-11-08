@@ -6,7 +6,7 @@ This circuit board should cover most, if not all, MBC3 games. The features are a
 
 - Able to make games up to 16 Mb in size, that use up to 256 Kb of RAM
 - Compatibility with all four of the popular Game Boy battery management ICs - MM1026, MM1134, BA6129, and BA6735
-- The option to add battery backup to the cartridge *without* the need of the original battery management ICs - perfect for MBC3 donors that didn't have batteries in them
+- The option to add battery backup to the cartridge *without* the need of the original battery management ICs
 - Fully compatible with the <a href="https://www.gbxcart.com/">GBxCart RW</a> so you can transfer games and save files to and from the board
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/7b075196-c268-4511-a2f7-1d9576e81676)
@@ -53,7 +53,7 @@ The board comes with five sets of jumper pads for solder bridges. SJ3, SJ5, and 
 
 ### Making Games Without SRAM or Battery (SJ1 and SJ4)
 
-Solder bridge SJ1 and SJ4 if your game does not use any SRAM or battery.
+Solder bridge SJ1 and SJ4 if your game does not use any SRAM or battery. I don't believe there were ever any MBC3 games made *without* SRAM, but if you wanted to... remove it for some reason, you can.
 
 ### MBC3 Type Select (SJ3)
 
