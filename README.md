@@ -100,9 +100,21 @@ On the back of the board are five test points. Here's where they are connected:
 
 After you assemble your game, you should measure the current out of the battery. But first, you should program it with the GBxCart, or if you programmed the EEPROM separately, put it into a Game Boy and cycle power once. Then, flip the PCB upside down on a non-conductive surface (not your leg), and set your multimeter in DC millivolts (or volts). Put the positive probe on TP3 and the negative probe on TP2. If you used a 10kΩ for R1, as indicated in the BOM, you should read a voltage in the single or tens of millivolts for non-RTC games, or up to 40 mV for games using a real-time clock. If you have something much higher, especially voltages above 40mV, then you likely have an issue or short circuit on the board somewhere.
 
-As I collect more revisions of MBC3 chips, I will update with approximate power draw measurements here.
-
 **Note: If using the replacement battery management IC in U5, you need to power up the game at least once before battery currents will make sense.**
+
+### Current Draw Measurements
+
+The revision of MBC3 chip you are using will influence how much current draw you get, and thus how long your battery life will last. For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM.
+
+| Rev   | P/N      | Current draw (no RTC) | Current draw (with RTC) |
+| ----- | -------- | --------------------- | ----------------------- |
+| MBC3  | LR385364 |          ?             |            ?             |
+| MBC3  | BU3631K  |          ?             |            ?             |
+| MBC3A | LR38536B |          ?             |            ?             |
+| MBC3A | BU3632K  |          ?             |            ?             |
+| MBC3A | P-2      |          ?             |            ?             |
+| MBC3B | BU3634K  |          ?             |             ?            |
+| MBC3B | P-2      |          ?            |              ?           |
 
 ## Bill of Materials (BOM)
 
