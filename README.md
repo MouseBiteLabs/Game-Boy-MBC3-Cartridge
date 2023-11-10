@@ -13,11 +13,15 @@ This circuit board should cover most, if not all, MBC3 games. The features are a
 
 All gerbers and source files can be found in this repo, as this project is fully open source. Technical documentation of the board can be found in the Technical folder.
 
-## Disclaimer
+## Important Things Before You Start
 
-I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. You may encounter issues with certain games! Attempt this project at your own risk.
+1) To make this game, you need to have an original Game Boy game that uses an MBC3 mapper chip. <a href="https://catskull.net/gb-rom-database/">You can find a list of games and their mappers here</a>. Use the search function.
+2) You will need to remove the MBC3 from your donor cartridge for use on this board. This will require a hot air rework station or a hot plate. There's a list below of other parts you can re-use from the donor cartridge.
+3) When soldering parts on, it's a good idea to put kapton tape or otherwise cover the bottom cartridge edge. You do not want to get solder on the cartridge contacts.
+4) I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. You may encounter issues with certain games! Attempt this project at your own risk.
+5) If you are using this board to make games other than for personal use, you must have permission from the originator to use and distribute any ROM images or other related material. You are responsible for making sure you adhere to any license requirements.
 
-If you are using this board to make games other than for personal use, you must have permission from the originator to use and distribute any ROM images or other related material. You are responsible for making sure you adhere to any license requirements. DO NOT use my circuit boards for profiting from stolen work - this especially includes homebrew content, ROM hacks, and using fan-made labels without permission from the originator.
+DO NOT use my circuit boards for profiting from stolen work - this especially includes homebrew content, ROM hacks, and using fan-made labels without permission from the originator. **Support original creators!**
 
 **Please note that version 1.3 is technically untested, however, the only consequential change is an additional 0.25 mm on the bottom of the board edge for better fitment, so I don't expect issues.**
 
@@ -145,6 +149,17 @@ Please carefully review the parts you need for the board you are trying to make.
 | U4                    | MM1026, MM1134, BA6129, BA6735 | SOIC-8           | Battery Management |               | x                  |                       | Donor Game Boy cartridge                         |
 | U5                    | TPS3613                        | MSOP-10          | Battery Management |               |                    | x                     | [https://mou.sr/45Ir2kh](https://mou.sr/45Ir2kh) |
 | X1                    | 32.768 kHz                     | Radial           | Crystal Oscillator |               | If using RTC       | If using RTC          | https://mou.sr/3ZteKuy                           |
+
+### Usable Donor Cartridge Parts
+
+You can use a few parts from the donor cart on the new board to save some money. Note that you will generally get better reliability with new parts as opposed to old ones. For example: I have seen failed RAM chips from donors in the past.
+
+1) **C2, C3, R2, X1:** RTC Components - You can move over these parts if you're using the real-time clock function
+2) **U2: MBC3** - This one is required
+3) **U3: SRAM** - You can use this part *only if* the game you're making uses the same or less amount of RAM that the donor cartridge does
+4) **U4: Battery Management IC** - Using this is probably preferred over the TPS3613 because it'll save you money and parts to put on
+
+You could probably transfer over most of the 0.1uF capacitors but they're pretty cheap anyway, so I generally just recommend buying new resistors and capacitors.
 
 ## Things to Remember
 
