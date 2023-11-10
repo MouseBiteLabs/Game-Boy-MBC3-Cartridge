@@ -154,7 +154,7 @@ Please carefully review the parts you need for the board you are trying to make.
 
 You can use a few parts from the donor cart on the new board to save some money. Note that you will generally get better reliability with new parts as opposed to old ones. For example: I have seen failed RAM chips from donors in the past.
 
-1) **C2, C3, R2, X1:** RTC Components - You can move over these parts if you're using the real-time clock function
+1) **C2, C3, R2, X1: RTC Components** - You can move over these parts if you're using the real-time clock function
 2) **U2: MBC3** - This one is required
 3) **U3: SRAM** - You can use this part *only if* the game you're making uses the same or less amount of RAM that the donor cartridge does
 4) **U4: Battery Management IC** - Using this is probably preferred over the TPS3613 because it'll save you money and parts to put on
