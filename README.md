@@ -15,7 +15,7 @@ All gerbers and source files can be found in this repo, as this project is fully
 
 ## Important Things Before You Start
 
-1) To make this game, you need to have an original Game Boy game that uses an MBC3 mapper chip. <a href="https://catskull.net/gb-rom-database/">You can find a list of games and their mappers here</a>. Use the search function.
+1) To use this board, you need to have an original Game Boy game that uses an MBC3 mapper chip. <a href="https://catskull.net/gb-rom-database/">You can find a list of games and their mappers here</a>. Use the search function.
 2) You will need to remove the MBC3 from your donor cartridge for use on this board. This will require a hot air rework station or a hot plate. There's a list below of other parts you can re-use from the donor cartridge.
 3) When soldering parts on, it's a good idea to put kapton tape or otherwise cover the bottom cartridge edge. You do not want to get solder on the cartridge contacts.
 4) I am not responsible for any damage you do to your self or your property. I do not guarantee design compatibility. You may encounter issues with certain games! Attempt this project at your own risk.
@@ -160,6 +160,13 @@ You can use a few parts from the donor cart on the new board to save some money.
 4) **U4: Battery Management IC** - Using this is probably preferred over the TPS3613 because it'll save you money and parts to put on
 
 You could probably transfer over most of the 0.1uF capacitors but they're pretty cheap anyway, so I generally just recommend buying new resistors and capacitors.
+
+### Capacitors C9 to C11
+
+If you want to experiment with the capacitors C9 to C11, see this info below. **Be aware that adding these components in some of my tests actually ***stopped*** games from working, so again, assume that if you have a problem it lies elsewhere first, because it almost certainly does.**
+- C9 is a capacitor connected nearby the SRAM's /WE pin to GND. These were populated on some cartridges, and I believe have a value of approximately 1 nF (0.001 uF) based on measurements from an MBC1 board that used it.
+- C10 is a capacitor connected from the cart edge /RESET pin to GND. A spot for this capacitor was included on some MBC1 carts, but I cannot locate an instance of it actually being used when looking through the gbhwdb. It does not appear on *any* MBC3 boards. I don't actually know what value this capacitor would need to be, so I am guessing 1 nF.
+- C11 is a capacitor that I have added that was not used on any original Game Boy board. It connects to the SRAM's /CE pin, bypassing to GND. I have added this in the event incompatibilities arise with newer SRAM chips that have much faster speeds than older SRAM chips. This was a problem I encountered on some of my NES cartridges, so this is here just in case, but I have not found an instance where it's required.
 
 ## Things to Remember
 
