@@ -92,6 +92,12 @@ Note that you can make games that only require 64Kb of RAM and still use a 256Kb
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/fe85ff2c-26b0-4e2a-8a7f-ffec7c7e6388)
 
+### Games Without a Real-Time Clock
+
+If your game does *not* use the RTC function with the crystal X1, then you need to bridge the pads of C3.
+
+![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/d46ea632-6318-4e5d-bf40-c4e9a7f52aa1)
+
 ## Test Points and Final Checkout
 
 On the back of the board are five test points. Here's where they are connected:
@@ -108,23 +114,30 @@ After you assemble your game, you should measure the current out of the battery.
 
 ### Current Draw Measurements
 
-The revision of MBC3 chip you are using will influence how much current draw you get, and thus how long your battery life will last. For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM.
+The revision of MBC3 chip you are using will influence the current draw out of the battery when the game is off, and thus how long your battery life will last. Using the real-time clock function on the MBC3 will draw more current than if you do not.
+
+For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have C3 shorted, and the "with RTC" measurements have R2, C2, C3, and X1 populated.
 
 | Rev   | P/N      | Current draw (no RTC) | Current draw (with RTC) |
 | ----- | -------- | --------------------- | ----------------------- |
-| MBC3  | LR385364 |          ?             |            ?             |
-| MBC3  | BU3631K  |          ?             |            ?             |
-| MBC3A | LR38536B |          ?             |            ?             |
-| MBC3A | BU3632K  |          ?             |            ?             |
-| MBC3A | P-2      |          ?             |            ?             |
-| MBC3B | BU3634K  |          ?             |             ?            |
-| MBC3B | P-2      |          ?            |              ?           |
+| MBC3  | P-1      |          ?            |            ?            |
+| MBC3  | LR385364 |          ?            |            ?            |
+| MBC3  | BU3631K  |          ?            |            ?            |
+| MBC3A | LR38536B |          0.1 u        |            1.5 uA       |
+| MBC3A | BU3632K  |          0.5 uA       |            1.5 uA       |
+| MBC3A | P-2      |          0.5 uA       |            3.9 uA       |
+| MBC3B | BU3634K  |          ?            |             ?           |
+| MBC3B | P-2      |          0.4 uA       |             3.7 uA      |
+
+*If you have one of the revisions of MBC3 chips that either have a question mark in the table, or is missing from the table, please contact me!*
 
 ## Bill of Materials (BOM)
 
 Your parts list will vary depending on the game you are trying to make, and what chips you have for the battery management (if any). Note that C9 - C11 footprints are only included for edge cases that may require them; you can ignore them unless you run into issues.
 
 Please carefully review the parts you need for the board you are trying to make. Do not add any parts to your build that don't appear in the column for the game you are making. This means you *cannot* populate every component on the board at the same time.
+
+**NOTE: If you are *not* using the RTC function of the MBC3, you need to bridge the pads of C3 with solder.**
 
 | Reference Designators | Value/Part Number              | Package          | Description        | No save carts | Save carts with U4 | Save carts without U4 | Source                                           |
 | --------------------- | ------------------------------ | ---------------- | ------------------ | ------------- | ------------------ | --------------------- | ------------------------------------------------ |
