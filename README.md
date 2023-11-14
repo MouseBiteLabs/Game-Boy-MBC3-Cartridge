@@ -83,12 +83,12 @@ The MBC3 chip you use from the donor cartridge can be one of a few different typ
 
 These jumpers are located underneath the MBC3 chip, and labeled "64K" and "256K". Solder them to configure the amount of RAM your cart uses. You must configure these pads for every game you make, unless you do not need RAM. <a href="https://catskull.net/gb-rom-database/">You can find a list of games here with their respective RAM sizes.</a>
 
-- If the game you're making uses 256Kb of SRAM, then solder the middle pads of the two jumper sets to the right pads.
-- If the game you're making uses 64Kb of SRAM, then solder the middle pads of the two jumper sets to the left pads.
+- If the game you're making uses 256 Kbit of RAM, then solder the middle pads of the two jumper sets to the right pads.
+- If the game you're making uses 64 Kbit of RAM, then solder the middle pads of the two jumper sets to the left pads.
 - SJ5 and SJ6 must be soldered in the same direction.
 - The footprint of these selection pads should allow for a DPDT switch, part number CAS-220A1, to be placed on these pads instead of having to bridge the pads with solder.
 
-Note that you can make games that only require 64Kb of RAM and still use a 256Kb SRAM chip. You still need to configure the jumpers to the 64Kb setting, though.
+Note that you can make games that only require 64 Kbit of RAM and still use a 256 Kbit SRAM chip. You still need to configure the jumpers to the 64 Kbit setting, though.
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/fe85ff2c-26b0-4e2a-8a7f-ffec7c7e6388)
 
@@ -188,10 +188,13 @@ If you want to experiment with the capacitors C9 to C11, see this info below. **
 - The footprint for the battery can fit a CR2032, CR2025, or CR2016 with solder tabs. The only difference is the mAh capacity (larger number = longer life). If you get Panasonic tabbed batteries, you may have to trim the battery tabs to make them fit on the footprint.
   - For untabbed coin cells, you can find battery retainer adapters online, <a href="https://retrogamerepairshop.com/products/hdr-game-boy-game-battery-retainer?variant=40511013290156">like this one.</a>
 - For battery management, use either U4 *or* U5 and supporting components. **Do not** use U4 and U5 simultaneously on one board. They will interfere with each other.
-- Kb is kilo**bits** and Mb is mega**bits**. Sometimes you will find game ROM and RAM sizes defined in terms of KB or kilo**bytes** and MB or mega**bytes**. You can convert Kb and Mb to KB and MB by dividing Kb or Mb by 8. For example, 256 Kb = 32 KB.
-- You only need to provide ROM and RAM chips that have at least *or greater* the size of the game you are trying to make. That means you can use a 256Kb SRAM chip for a game that only requires 64Kb!
+- Generally, ROM sizes are conveyed in terms of kilo**bytes** (KB) and mega**bytes** (KB, MB). RAM size is usually conveyed in terms of kilo**bits** or mega**bits** (Kbit, Mbit). You can convert Kbit and Mbit to KB and MB by dividing Kbit or Mbit by 8. For example, 256 Kbit = 32 KB.
+- You only need to provide ROM and RAM chips that have at least *or greater* the size of the game you are trying to make. That means you can use a 256 Kbit SRAM chip for a game that only requires 64 Kbit of RAM!
 
 ## Revision History
+
+### v1.4
+- Change C3 to Z1
 
 ### v1.3
 - Extended cart edge down by 0.25 mm for better fitment
