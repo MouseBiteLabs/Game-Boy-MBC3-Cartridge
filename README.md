@@ -4,7 +4,7 @@ This is my design of a flashable MBC3-based cartridge for the Game Boy. The MBC3
 
 This circuit board should cover most, if not all, MBC3 games. The features are as follows:
 
-- Able to make games up to 16 Mb in size, that use up to 256 Kb of RAM
+- Able to make games up to 2 MB in size, that use up to 256 Kbit of RAM
 - Compatibility with all four of the popular Game Boy battery management ICs - MM1026, MM1134, BA6129, and BA6735
 - The option to add battery backup to the cartridge *without* the need of the original battery management ICs
 - Fully compatible with the <a href="https://www.gbxcart.com/">GBxCart RW</a> so you can transfer games and save files to and from the board
