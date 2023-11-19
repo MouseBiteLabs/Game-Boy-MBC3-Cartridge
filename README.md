@@ -123,11 +123,11 @@ For the test set up, I am replacing the battery with a regulated DC power supply
 | MBC3  | P-1      |          ?            |            ?            |
 | MBC3  | LR385364 |          ?            |            ?            |
 | MBC3  | BU3631K  |          ?            |            ?            |
-| MBC3A | LR38536B |          0.1 u        |            1.5 uA       |
+| MBC3A | LR38536B |          0.1 uA       |            1.5 uA       |
 | MBC3A | BU3632K  |          0.5 uA       |            1.5 uA       |
 | MBC3A | P-2      |          0.5 uA       |            3.9 uA       |
-| MBC3B | BU3634K  |          ?            |             ?           |
-| MBC3B | P-2      |          0.4 uA       |             3.7 uA      |
+| MBC3B | BU3634K  |          0.6 uA       |            1.5 uA       |
+| MBC3B | P-2      |          0.4 uA       |            3.7 uA       |
 
 *If you have one of the revisions of MBC3 chips that either have a question mark in the table, or is missing from the table, please contact me!*
 
