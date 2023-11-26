@@ -35,9 +35,9 @@ The zipped folder contains all the gerber files for this board. The following op
 
 **Add this note to orders:** "The milling.gbr layer indicates where an unplated slot should be added to the board. Please add an unplated slot as indicated."
 
-**Currently not selling on Etsy, but will in the future. Stay tuned.**
+**I sell this blank circuit board on Etsy, so you don't have to buy a bunch of multiples if you don't want to.**
 
-<a href="https://www.etsy.com/shop/MouseBiteLabs"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/97127539/239718536-5c9aefe3-0628-4434-b8d8-55ff80ac3bbc.png" alt="PCB from Etsy" /></a> 
+<a href="https://mousebitelabs.etsy.com/listing/1605239014/game-boy-cartridge-pcb-mbc3"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/97127539/239718536-5c9aefe3-0628-4434-b8d8-55ff80ac3bbc.png" alt="PCB from Etsy" /></a> 
 
 You can use the zipped folder at any board fabricator you like. You may also buy the board from PCBWay using this link (disclosure: I receive 10% of the sale value to go twoards future PCB orders of my own):
 
@@ -193,12 +193,12 @@ If you want to experiment with the capacitors C9 to C11, see this info below. **
 
 ## Revision History
 
-### v1.4
-- Change C3 to Z1
+### v1.4 (PROTOTYPES ORDERED)
+- Changed "C3" to "Z1"
 - Reduced cart edge by 0.1 mm for better fitment
-- Adjust battery placement to support more battery holders
+- Adjusted battery placement to support more battery holders
 
-### v1.3
+### v1.3 (FOR SALE)
 - Extended cart edge down by 0.25 mm for better fitment
 - Added OSHW logo and "SUPPORT ORIGINAL CREATORS!"
 
