@@ -193,7 +193,7 @@ If you want to experiment with the capacitors C9 to C11, see this info below. **
 
 ## Revision History
 
-### v1.4 (PROTOTYPES ORDERED)
+### v1.4 (IN PROGRESS)
 - Changed "C3" to "Z1"
 - Reduced cart edge by 0.1 mm for better fitment
 - Adjusted battery placement to support more battery holders
