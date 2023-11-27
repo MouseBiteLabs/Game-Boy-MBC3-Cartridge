@@ -9,7 +9,7 @@ This circuit board should cover most, if not all, MBC3 games. The features are a
 - The option to add battery backup to the cartridge *without* the need of the original battery management ICs
 - Fully compatible with the <a href="https://www.gbxcart.com/">GBxCart RW</a> so you can transfer games and save files to and from the board
 
-![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/7b075196-c268-4511-a2f7-1d9576e81676)
+![boardscan2](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/6acb55e7-2311-432a-8c3b-e87bc86c1b8e)
 
 All gerbers and source files can be found in this repo, as this project is fully open source. Technical documentation of the board can be found in the Technical folder.
 
