@@ -121,7 +121,7 @@ For the test set up, I am replacing the battery with a regulated DC power supply
 | Rev   | P/N      | Current draw (no RTC) | Current draw (with RTC) |
 | ----- | -------- | --------------------- | ----------------------- |
 | MBC3  | P-1      |          ?            |            ?            |
-| MBC3  | LR385364 |          ?            |            ?            |
+| MBC3  | LR385364 |          0.1 uA       |            1.8 uA       |
 | MBC3  | BU3631K  |          ?            |            ?            |
 | MBC3A | LR38536B |          0.1 uA       |            1.5 uA       |
 | MBC3A | BU3632K  |          0.5 uA       |            1.5 uA       |
