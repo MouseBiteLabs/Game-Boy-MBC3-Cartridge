@@ -35,7 +35,7 @@ The zipped folder contains all the gerber files for this board. The following op
 
 **Add this note to orders:** "The milling.gbr layer indicates where an unplated slot should be added to the board. Please add an unplated slot as indicated."
 
-**I sell this blank circuit board on Etsy, so you don't have to buy a bunch of multiples if you don't want to.**
+**I sell this blank circuit board on Etsy, so you don't have to buy a bunch of multiples if you don't want to.** (Click the banner!)
 
 <a href="https://mousebitelabs.etsy.com/listing/1605239014/game-boy-cartridge-pcb-mbc3"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/97127539/239718536-5c9aefe3-0628-4434-b8d8-55ff80ac3bbc.png" alt="PCB from Etsy" /></a> 
 
