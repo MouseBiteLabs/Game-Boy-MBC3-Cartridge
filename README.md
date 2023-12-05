@@ -205,7 +205,7 @@ If you want to experiment with the capacitors C9 to C11, see this info below. **
 - Changed "C3" to "Z1"
 - Reduced cart edge by 0.1 mm for better fitment
 - Adjusted battery placement to support more battery holders
-- Added nubs on the board edge to prevent the circuit board from rattling around in aftermarket cartridges
+- Added tabs on the board edges to allow the circuit board to fit better in aftermarket cartridge shells
 
 ### v1.3 (FOR SALE)
 - Extended cart edge down by 0.25 mm for better fitment
