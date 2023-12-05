@@ -94,7 +94,7 @@ Note that you can make games that only require 64 Kbit of RAM and still use a 25
 
 ### Games Without a Real-Time Clock
 
-If your game does *not* use the RTC function with the crystal X1, then you need to bridge the pads of C3.
+If your game does *not* use the RTC function with the crystal X1, then you need to bridge the pads of Z1 (which is called C3 on v1.3 and earlier).
 
 ![image](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/d46ea632-6318-4e5d-bf40-c4e9a7f52aa1)
 
@@ -116,7 +116,7 @@ After you assemble your game, you should measure the current out of the battery.
 
 The revision of MBC3 chip you are using will influence the current draw out of the battery when the game is off, and thus how long your battery life will last. Using the real-time clock function on the MBC3 will draw more current than if you do not.
 
-For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have C3 shorted, and the "with RTC" measurements have R2, C2, C3, and X1 populated.
+For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have Z1 (or C3) shorted, and the "with RTC" measurements have R2, C2, Z1, and X1 populated.
 
 | Rev   | P/N      | Current draw (no RTC) | Current draw (with RTC) |
 | ----- | -------- | --------------------- | ----------------------- |
@@ -131,20 +131,28 @@ For the test set up, I am replacing the battery with a regulated DC power supply
 
 *If you have a revision of MBC3 chip that is missing from the table, please contact me!*
 
+## Board Fitment
+
+The shape of this board was originally meant to mimic original Game Boy circuit boards as closely as possible (v1.3 and earlier). Unfortunately, when placed in some aftermarket Game Boy cartridge shells (like those from Cloud Game Store), the circuit board has a lot of freedom to rotate around the main screw hole in the bottom-middle of the cartridge. This can cause misalignment when you put it in a Game Boy, which can cause a game to either not load properly (garbled Game Boy logo) or shut off the Game Boy because of a short circuit. This isn't *dangerous* or anything, just annoying.
+
+In order to make the boards fit nicer in any kind of shell, for v1.4 I added extended tabs of circuit board material to the edges of the cartridges to keep it from rotating too much in shells, which was suggested to me by <a href="https://github.com/orangeglo">orangeglo</a>! (Thanks!)
+
+If you're having trouble fitting the circuit board into a shell, because the tabs interfere with the cart edges, you can safely sand or trim them down as there is no copper within the tabs themselves. Fortunately, they have fit in every shell type I've come across so far.
+
 ## Bill of Materials (BOM)
 
 Your parts list will vary depending on the game you are trying to make, and what chips you have for the battery management (if any). Note that C9 - C11 footprints are only included for edge cases that may require them; you can ignore them unless you run into issues.
 
 Please carefully review the parts you need for the board you are trying to make. Do not add any parts to your build that don't appear in the column for the game you are making. This means you *cannot* populate every component on the board at the same time.
 
-**NOTE: If you are *not* using the RTC function of the MBC3, you need to bridge the pads of C3 with solder.**
+**NOTE: If you are *not* using the RTC function of the MBC3, you need to bridge the pads of Z1 (or C3) with solder.**
 
 | Reference Designators | Value/Part Number              | Package          | Description        | No save carts | Save carts with U4 | Save carts without U4 | Source                                           |
 | --------------------- | ------------------------------ | ---------------- | ------------------ | ------------- | ------------------ | --------------------- | ------------------------------------------------ |
 | B1                    | CR2032, CR2025, CR2016         | CR2032           | Backup Battery     |               | x                  | x                     | [https://mou.sr/3SeAzfT](https://mou.sr/3SeAzfT) |
 | C1                    | 0.1uF                          | 0603             | Capacitor (MLCC)   | x             | x                  | x                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
 | C2                    | 15pF                           | 0603             | Capacitor (MLCC)   |               | If using RTC       | If using RTC          | https://mou.sr/3PPorjO                           |
-| C3                    | 15pF                           | 0603             | Capacitor (MLCC)   |               | If using RTC       | If using RTC          | https://mou.sr/3PPorjO                           |
+| Z1 (or C3)            | 15pF                           | 0603             | Capacitor (MLCC)   |               | If using RTC       | If using RTC          | https://mou.sr/3PPorjO                           |
 | C4                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               | x                  |                       | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
 | C5                    | 0.1uF                          | 0603             | Capacitor (MLCC)   |               | x                  | x                     | [https://mou.sr/3ENc15O](https://mou.sr/3ENc15O) |
 | C6                    | 10uF                           | 0603             | Capacitor (MLCC)   |               | x                  | x                     | [https://mou.sr/3mZtSkF](https://mou.sr/3mZtSkF) |
@@ -167,7 +175,7 @@ Please carefully review the parts you need for the board you are trying to make.
 
 You can use a few parts from the donor cart on the new board to save some money. Note that you will generally get better reliability with new parts as opposed to old ones. For example: I have seen failed RAM chips from donors in the past.
 
-1) **C1, C2, R2, X1: RTC Components** - You can move over these parts if you're using the real-time clock function. Note that C1 and C2 are designated as C2 and C3 on my board. They're the same value, so they're interchangeable.
+1) **C1/Z1, C2, R2, X1: RTC Components** - You can move over these parts if you're using the real-time clock function. The two capacitors are the same value, so they are interchangeable. On games that *don't* use the RTC, you can't move "Z1" over, because it's a resistor on those boards. Also be careful that on my board, the RTC capacitors are designated as "Z1" (or "C3") and "C2" - don't accidentally move the wrong capacitors over from the donor board to these spots!
 2) **U2: MBC3** - This one is required
 3) **U3: SRAM** - You can use this part *only if* the game you're making uses the same or less amount of RAM that the donor cartridge does
 4) **U4: Battery Management IC** - Using this is probably preferred over the TPS3613 because it'll save you money and parts to put on
