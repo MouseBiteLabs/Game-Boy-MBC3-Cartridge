@@ -118,20 +118,20 @@ To estimate battery life, see <a href="https://github.com/MouseBiteLabs/Game-Boy
 
 The revision of MBC3 chip you are using will influence the current draw out of the battery when the game is off, and thus how long your battery life will last. Using the real-time clock function on the MBC3 will draw more current than if you do not.
 
-For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have Z1 (or C3) shorted, and the "with RTC" measurements have R2, C2, Z1, and X1 populated.
+For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have Z1 (or C3) shorted, and the "with RTC" measurements have R2, C2, Z1, and X1 populated. I am using a Fluke 117 Multimeter in DC mV mode for measurements.
 
-| Rev   | P/N      | Current draw (no RTC) | Current draw (with RTC) |
-| ----- | -------- | --------------------- | ----------------------- |
-| MBC3  | LR385364 |          0.1 uA       |            1.8 uA       |
-| MBC3  | BU3631K  |          ?            |            ?            |
-| MBC3  | P-1      |          0.4 uA       |            3.8 uA       |
-| MBC3A | LR38536B |          0.1 uA       |            1.5 uA       |
-| MBC3A | BU3632K  |          0.5 uA       |            1.5 uA       |
-| MBC3A | P-2      |          0.5 uA       |            3.9 uA       |
-| MBC3B | BU3634K  |          0.6 uA       |            1.5 uA       |
-| MBC3B | P-2      |          0.4 uA       |            3.7 uA       |
+| Rev   | P/N      | Current draw (without RTC) | Battery Life Estimate (CR2025)       | Current draw (with RTC) | Battery Life Estimate (CR2025)       |
+| ----- | -------- | -------------------------- | ------------------------------------ | ----------------------- | ------------------------------------ |
+| MBC3  | LR385364 |          0.2 uA            |               >50 years              |            1.8 uA       |              10 years                |
+| MBC3  | BU3631K  |          0.6 uA            |                31 years              |            1.6 uA       |               12 years               |
+| MBC3  | P-1      |          0.4 uA            |                47 years              |            3.8 uA       |               5 years                |
+| MBC3A | LR38536B |          0.2 uA            |                >50 years             |            1.5 uA       |              13 years                |
+| MBC3A | BU3632K  |          0.5 uA            |               37 years               |            1.5 uA       |               13 years               |
+| MBC3A | P-2      |          0.5 uA            |               37 years               |            3.9 uA       |               5 years                |
+| MBC3B | BU3634K  |          0.6 uA            |               31 years               |            1.5 uA       |               13 years               |
+| MBC3B | P-2      |          0.4 uA            |               47 years               |            3.7 uA       |               5 years                |
 
-*If you have a revision of MBC3 chip that is missing from the table, please contact me!*
+*Note: The SRAM I used, AS6C62256, drew 0.05 uA by itself for these tests. Your current draw may vary depending on the SRAM you are using.*
 
 ## Board Fitment
 
