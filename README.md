@@ -120,18 +120,31 @@ The revision of MBC3 chip you are using will influence the current draw out of t
 
 For the test set up, I am replacing the battery with a regulated DC power supply set for 3 VDC for consistency, on a cart board with an MM1134 chip for U4, and brand new AS6C62256 SRAM. The "no RTC" measurements have Z1 (or C3) shorted, and the "with RTC" measurements have R2, C2, Z1, and X1 populated. I am using a Fluke 117 Multimeter in DC mV mode for measurements.
 
-| Rev   | P/N      | Current draw (without RTC) | Battery Life Estimate (CR2025)       | Current draw (with RTC) | Battery Life Estimate (CR2025)       |
-| ----- | -------- | -------------------------- | ------------------------------------ | ----------------------- | ------------------------------------ |
-| MBC3  | LR385364 |          0.2 uA            |               >50 years              |            1.8 uA       |              10 years                |
-| MBC3  | BU3631K  |          0.6 uA            |                31 years              |            1.6 uA       |               12 years               |
-| MBC3  | P-1      |          0.4 uA            |                47 years              |            3.8 uA       |               5 years                |
-| MBC3A | LR38536B |          0.2 uA            |                >50 years             |            1.5 uA       |              13 years                |
-| MBC3A | BU3632K  |          0.5 uA            |               37 years               |            1.5 uA       |               13 years               |
-| MBC3A | P-2      |          0.5 uA            |               37 years               |            3.9 uA       |               5 years                |
-| MBC3B | BU3634K  |          0.6 uA            |               31 years               |            1.5 uA       |               13 years               |
-| MBC3B | P-2      |          0.4 uA            |               47 years               |            3.7 uA       |               5 years                |
+| Rev   | P/N      | Current draw (without RTC) | Battery Life Estimate (no RTC, CR2025) | Current draw (with RTC) | Battery Life Estimate (RTC, CR2025)  | Battery Life Estimate (RTC, CR2032) |
+| ----- | -------- | -------------------------- | -------------------------------------- | ----------------------- | ------------------------------------ | ----------------------------------- |
+| MBC3  | LR385364 |          0.2 uA            |               >50 years                |            1.8 uA       |               10 years               |            14 years                 |
+| MBC3  | BU3631K  |          0.6 uA            |                31 years                |            1.6 uA       |               12 years               |            16 years                 |
+| MBC3  | P-1      |          0.4 uA            |                47 years                |            3.8 uA       |               5 years                |             7 years                 |
+| MBC3A | LR38536B |          0.2 uA            |               >50 years                |            1.5 uA       |               13 years               |            18 years                 |
+| MBC3A | BU3632K  |          0.5 uA            |                37 years                |            1.5 uA       |               13 years               |            18 years                 |
+| MBC3A | P-2      |          0.5 uA            |                37 years                |            3.9 uA       |               5 years                |            7 years                  |
+| MBC3B | BU3634K  |          0.6 uA            |                31 years                |            1.5 uA       |               13 years               |            18 years                 |
+| MBC3B | P-2      |          0.4 uA            |                47 years                |            3.7 uA       |               5 years                |            7 years                  |
 
 *Note: The SRAM I used, AS6C62256, drew 0.05 uA by itself for these tests. Your current draw may vary depending on the SRAM you are using.*
+
+### Why not FRAM?
+
+This board is only suitable for using SRAM. One downside to SRAM, if you haven't figured it out yet, is that you need a battery to keep the SRAM powered on even when the game is turned off. So eventually the battery will die, and your save data is lost. Some people have used FRAM, or Ferroelectric RAM, to keep save data around even after the battery dies (specifically, the popular part that's used for FRAM carts is the FM18W08). But, using this FRAM chip has a handful of downsides, and the benefit of keeping save data after the battery dies *in my opinion* does not outweigh the cons, which are as follows:
+
+1) Quality, new stock, 5V tolerant FRAM is expensive ($12+ per part).
+2) Cheaper FRAM chips from eBay or Aliexpress are notoriously flaky (anecdotally, ~50% success rate).
+3) FM18W08 maxes out at 256K (which is restrictive for multicarts).
+4) FRAM memory access requires different chip select timing than SRAM, and the Game Boy expects SRAM, so it is not natively compatible with FRAM carts. The Gameboy Color specifically cannot (easily) be made to properly access FM18W08 chip. You *can* use an OR gate and add the CLK on the cart edge to try to achieve the necessary timing, but it only works (properly) for DMG/MGB/SGB, not the GBC. It usually *works* in practice for GBC, but it's technically a datasheet violation and can potentially cause issues in edge cases. <a href="https://github.com/Gekkio">(Thanks to gekkio for pointing this out!)</a>
+
+Brand new SRAM chips are ~$3, and having the SRAM footprint also allows you to use SRAM from an original cart if desired. And other than the scenario where you are making a game with a real-time clock and are using an inefficient MBC3 variant (P-1 or P-2), you can easily get more than a decade of battery life. You're already assembling this cartridge; you can dump the save and replace the battery!
+
+Note that this isn't to throw shade at any FRAM-based carts, but for me personally, it's more trouble than it's worth. If you just *need* FRAM, you can find other cart designs out there that have it, <a href="https://retrogamerepairshop.com/products/game-boy-2mb-32kb-fram-mbc3-with-rtc-flash-cartridge-by-hdr?variant=40144623927468">like this one!</a>
 
 ## Board Fitment
 
