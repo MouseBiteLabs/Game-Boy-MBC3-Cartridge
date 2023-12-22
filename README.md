@@ -43,7 +43,7 @@ You can use the zipped folder at any board fabricator you like. You may also buy
 
 <a href="https://www.pcbway.com/project/shareproject/Game_Boy_MBC3_Cartridge_a4f7b749.html"><img src="https://www.pcbway.com/project/img/images/frompcbway-1220.png" alt="PCB from PCBWay" /></a>
 
-<a href="https://oshpark.com/shared_projects/GRRcvLMd">The board is also listed on OSH Park as well.</a> **Be sure to get them in 0.8mm thickness if you order from here.**
+<a href="https://oshpark.com/shared_projects/6rPI4Bk8">The board is also listed on OSH Park as well.</a> **Be sure to get them in 0.8mm thickness if you order from here.**
 
 ## Required Equipment
 
