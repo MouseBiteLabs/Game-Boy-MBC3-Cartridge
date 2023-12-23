@@ -1,5 +1,7 @@
 # Game Boy MBC3 Cartridge
 
+**Note: v1.4 has been ordered but is considered untested.**
+
 This is my design of a flashable MBC3-based cartridge for the Game Boy. The MBC3 mapper improves a lot over the MBC1, and includes a real-time clock for everyone's favorite battery-sucking game.... Mary Kate and Ashley Pocket Planner! Oh, and Pokemon.
 
 This circuit board should cover most, if not all, MBC3 games. The features are as follows:
