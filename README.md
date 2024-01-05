@@ -8,6 +8,8 @@ This circuit board should cover most, if not all, MBC3 games. The features are a
 - Compatibility with all four of the popular Game Boy battery management ICs - MM1026, MM1134, BA6129, and BA6735
 - The option to add battery backup to the cartridge *without* the need of the original battery management ICs
 - Fully compatible with the <a href="https://www.gbxcart.com/">GBxCart RW</a> so you can transfer games and save files to and from the board
+- 
+![assemblepic](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/45211af2-9ab5-4f83-98d1-424d3adb0a3d)
 
 ![boardscan3](https://github.com/MouseBiteLabs/Game-Boy-MBC3-Cartridge/assets/97127539/a80373fc-9791-403f-a3d8-92dc1ae45699)
 
