@@ -155,7 +155,7 @@ If you're having trouble fitting the circuit board into a shell, because the tab
 
 ## Bill of Materials (BOM)
 
-Your parts list will vary depending on the game you are trying to make, and what chips you have for the battery management (if any). Note that C9 - C11 footprints are only included for edge cases that may require them; you can ignore them unless you run into issues.
+Your parts list will vary depending on the game you are trying to make, and what chips you have for the battery management (if any). **You cannot use both U4 and U5 - you must choose one or the other.** U4 comes from a donor cartridge, and U5 is a readily available aftermarket option.
 
 Please carefully review the parts you need for the board you are trying to make. Do not add any parts to your build that don't appear in the column for the game you are making. This means you *cannot* populate every component on the board at the same time.
 
@@ -185,6 +185,8 @@ Please carefully review the parts you need for the board you are trying to make.
 | U5                    | TPS3613                        | MSOP-10          | Battery Management |               |                    | x                     | [https://mou.sr/45Ir2kh](https://mou.sr/45Ir2kh) |
 | X1                    | 32.768 kHz                     | Radial           | Crystal Oscillator |               | If using RTC       | If using RTC          | https://mou.sr/3ZteKuy                           |
 
+*Note that C9 - C11 footprints are only included on the board for strange edge cases that may require them sometime in the future; do not populate! See the technical design document for more information.*
+
 ### Usable Donor Cartridge Parts
 
 You can use a few parts from the donor cart on the new board to save some money. Note that you will generally get better reliability with new parts as opposed to old ones. For example: I have seen failed RAM chips from donors in the past.
@@ -210,7 +212,7 @@ If you want to experiment with the capacitors C9 to C11, see this info below. **
 - The footprint for the battery can fit a CR2032, CR2025, or CR2016 with solder tabs. The only difference is the mAh capacity (larger number = longer life). If you get Panasonic tabbed batteries, you may have to trim the battery tabs to make them fit on the footprint.
   - For untabbed coin cells, you can find battery retainer adapters online, <a href="https://retrogamerepairshop.com/products/hdr-game-boy-game-battery-retainer?variant=40511013290156">like this one,</a> but only for board revision v1.4. It will not fit on earlier revisions.
 - For battery management, use either U4 *or* U5 and supporting components. **Do not** use U4 and U5 simultaneously on one board. They will interfere with each other.
-- Generally, ROM sizes are conveyed in terms of kilo**bytes** (KB) and mega**bytes** (KB, MB). RAM size is usually conveyed in terms of kilo**bits** or mega**bits** (Kbit, Mbit). You can convert Kbit and Mbit to KB and MB by dividing Kbit or Mbit by 8. For example, 256 Kbit = 32 KB.
+- Generally, ROM sizes are conveyed in terms of kilo**bytes** and mega**bytes** (KB, MB). RAM size is usually conveyed in terms of kilo**bits** or mega**bits** (Kbit, Mbit). You can convert Kbit and Mbit to KB and MB by dividing Kbit or Mbit by 8. For example, 256 Kbit = 32 KB.
 - You only need to provide ROM and RAM chips that have at least *or greater* the size of the game you are trying to make. That means you can use a 256 Kbit SRAM chip for a game that only requires 64 Kbit of RAM!
 
 ## Revision History
